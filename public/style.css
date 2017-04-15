@@ -1,7 +1,16 @@
 /*CSS Style Sheet*/
 
-#map-container {
-  height: 100%;
-  max-width: 100%;
+#map {
+  height: 50%;
+  width: 50%;
 }
 
+#geolocation-container {
+  width: 50%;
+  height: 100vh;
+  border: 10px solid red;
+}
+
+#flex {
+  display: flex;
+}

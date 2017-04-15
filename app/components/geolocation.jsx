@@ -1,17 +1,41 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import DarkSkyApi from '../DarkSky.jsx';
 
-import DarkSkyAPI from 'dark-sky-api';
-import {DarkSky_API_KEY, GoogleMaps_API_KEY} from '../../API_KEYS.json';
+export const Geolocation = (props) => {
 
-export const geolocation = (props) => {
+  function latLng () {
+    if (props.geocodeData.geometry){
+      let data = props.geocodeData.geometry.location;
+      let position = {latitude: data.lat(), longitude: data.lng()}
+      console.log("position is: ", position);
+      let DarkSkyApiInstance = new DarkSkyApi(DarkSkyApi.apiKey);
+      DarkSkyApiInstance.loadCurrent(position)
+          .then(result => console.log(result))
+    }
+  }
 
-  DarkSkyAPI.apiKey = DarkSky_API_KEY;
-  DarkSkyAPI.loadCurrent()
-   .then(result => console.log(result))
+  latLng();
 
   return (
     <div id="geolocation-container">
     </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    geocodeData: state.geocode.geocodeData
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
+
+const GeoContainer = connect(
+  mapStateToProps, mapDispatchToProps)(Geolocation)
+
+export default GeoContainer;

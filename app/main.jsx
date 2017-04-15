@@ -9,19 +9,16 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 
-import {geolocation} from './components/Geolocation.jsx';
-import GoogleApiWrapper, {mapContainer} from './components/MapContainer.jsx'
-
-import DarkSkyAPI from 'dark-sky-api';
-import {DarkSky_API_KEY} from '../API_KEYS.json';
+import GeoContainer from './components/Geolocation.jsx';
+import GoogleApiWrapper from './components/MapAPIContainer.jsx'
+import DarkSkyApi from './DarkSky.jsx';
 
 const defaultWeatherInfo = () => {
-  DarkSkyAPI.apiKey = DarkSky_API_KEY;
-  DarkSkyAPI.loadCurrent()
+  DarkSkyApi.loadCurrent()
   .then(result => console.log(result))
 }
 
-const ExampleApp = connect(
+const AppContainer = connect(
   ({ auth }) => ({ user: auth })
 )(
   ({ user, children }) =>
@@ -29,16 +26,20 @@ const ExampleApp = connect(
       <nav>
         {user ? <WhoAmI /> : <Login />}
       </nav>
-      {children}
+      {/*children*/}
+      <div id="flex">
+        <GeoContainer />
+        <GoogleApiWrapper />
+      </div>
     </div>
 )
 
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={ExampleApp}>
-       <IndexRedirect to="/map" />
-        <Route path="/geolocation" component={geolocation} />
+      <Route path="/" component={AppContainer}>
+       {/*<IndexRedirect to="/map" />*/}
+        <Route path="/geolocation" component={GeoContainer} onEnter={defaultWeatherInfo} />
         <Route path="/map" component={GoogleApiWrapper} />
       </Route>
       <Route path="*" component={NotFound} />

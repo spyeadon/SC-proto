@@ -1,44 +1,50 @@
 import React from 'react';
-import Map, {GoogleApiWrapper, Marker} from 'google-maps-react';
+import Map, {Marker} from 'google-maps-react';
 import {GoogleMaps_API_KEY} from '../../API_KEYS.json';
-import ReactDOM from 'react-dom';
 
-export class mapContainer extends React.Component {
+class MapContainer extends React.Component {
   constructor(props){
     super();
+    this.state = {
+      input: ''
+    }
   }
 
   componentDidUpdate() {
-    console.log("google object from props: ", this.props);
-    this.geocoder = new this.props.google.maps.Geocoder();
-    console.log(this.geocoder);
-    function handleResults(results) {
+    const component = this;
+    function receiveLatLng(results) {
       console.log("geocode response results: ", results);
-      console.log("lat: ", results[0].geometry.location.lat());
-      console.log("long: ", results[0].geometry.location.lng());
+      component.props.storeSearchResults(results[0]);
     }
-    this.geocoder.geocode({address: '5450 S East View Park, Chicago IL'}, handleResults);
+    if (this.props.google){
+      this.geocoder = new this.props.google.maps.Geocoder();
+      this.geocoder.geocode({address: 'stockholm, sweden'}, receiveLatLng);
+    }
   }
 
   render() {
-    // const currentLoc = this.props.google.maps.LatLng.bind()
-    const loc = {lat: 59.329323, lng: 18.068581};
+    let loc;
+    const initialLoc = {lat: 59.329323, lng: 18.068581};
 
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
     return (
       <div id="map-container">
-        <Map
-          google={this.props.google}
-          position={loc}
-        >
-        </Map>
+        <form>
+          <input />
+          <button />
+        </form>
+        <div id="map">
+          <Map
+            google={this.props.google}
+            position={loc || initialLoc}
+          >
+          </Map>
+        </div>
       </div>
     )
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: GoogleMaps_API_KEY
-})(mapContainer);
+export default MapContainer;
