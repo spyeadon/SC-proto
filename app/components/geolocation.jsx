@@ -9,9 +9,8 @@ export const Geolocation = (props) => {
       let data = props.geocodeData.geometry.location;
       let position = {latitude: data.lat(), longitude: data.lng()}
       console.log("position is: ", position);
-      let DarkSkyApiInstance = new DarkSkyApi(DarkSkyApi.apiKey);
-      DarkSkyApiInstance.loadCurrent(position)
-          .then(result => console.log(result))
+      DarkSkyApi.loadCurrent(position)
+        .then(result => console.log(result));
     }
   }
 

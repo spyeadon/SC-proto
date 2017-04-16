@@ -18,7 +18,7 @@ class MapContainer extends React.Component {
     }
     if (this.props.google){
       this.geocoder = new this.props.google.maps.Geocoder();
-      this.geocoder.geocode({address: 'stockholm, sweden'}, receiveLatLng);
+      this.geocoder.geocode({address: 'mumbai, india'}, receiveLatLng);
     }
   }
 

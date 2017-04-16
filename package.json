@@ -1,6 +1,6 @@
 {
   "name": "skycast",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "App that allows users to retrieve current as well as historic weather data about any location that the users search",
   "main": "index.js",
   "scripts": {
@@ -47,7 +47,7 @@
     "check-node-version": "^1.1.2",
     "concurrently": "^3.1.0",
     "cookie-session": "^2.0.0-alpha.1",
-    "dark-sky-api": "^0.5.13",
+    "dark-sky-api": "^0.5.14",
     "enzyme": "^2.5.1",
     "express": "^4.14.0",
     "finalhandler": "^1.0.0",
