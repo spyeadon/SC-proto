@@ -1,39 +1,34 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import DarkSkyApi from '../DarkSky.jsx';
 import Chart from './Charts.jsx';
 
 class Geolocation extends React.Component {
   constructor(props){
     super();
-    this.getWeatherData = this.getWeatherData.bind(this);
-  }
-
-  getWeatherData () {
-    if (this.props.geocodeData.geometry){
-      let data = this.props.geocodeData.geometry.location;
-      let position = {latitude: data.lat(), longitude: data.lng()}
-      console.log("position is: ", position);
-      //  DarkSkyApi.loadCurrent(position)
-      //   .then(result => console.log("current forecast data: ", result));
-
-      return DarkSkyApi.loadForecast(position)
-        .then(result => {
-          console.log("weekly forecast data", result);
-          return result
-        }).then(result => {
-            let obj = {};
-            obj.data = result.daily.data;
-            obj.summary = result.daily.summary;
-            return obj;
-          })
+    this.state = {
+      updated: false
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    console.log("geolocation will receive next props");
+    console.log("weather data: ", nextProps.geocodeData);
+    if (nextProps.geocodeData && !this.state.updated) {
+      this.setState({updated: true})
+    }
+  }
+
+  componentDidMount () {
+    console.log("geolocation did mount")
+  }
+
   render (){
+    if (!this.state.updated) {
+      return <div id="geolocation-container">Loading...</div>
+    }
     return (
       <Chart
-        getWeatherData={this.getWeatherData}
+      weatherData={this.props.geocodeData}
       />
     )
   }
@@ -45,13 +40,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-
-  }
-}
-
 const GeoContainer = connect(
-  mapStateToProps, mapDispatchToProps)(Geolocation)
+  mapStateToProps, null)(Geolocation)
 
 export default GeoContainer;

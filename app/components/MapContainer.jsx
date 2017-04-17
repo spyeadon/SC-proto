@@ -2,6 +2,7 @@ import React from 'react';
 import Map, {Marker} from 'google-maps-react';
 import Maps from './Map.jsx';
 import {GoogleMaps_API_KEY} from '../../API_KEYS.json';
+import DarkSkyApi from '../DarkSky.jsx';
 
 class MapContainer extends React.Component {
   constructor(props){
@@ -32,7 +33,11 @@ class MapContainer extends React.Component {
   }
 
   componentDidMount () {
-    console.log('mounted');
+    console.log('map container did mount');
+  }
+
+  componentWillReceiveProps (nextProps) {
+    console.log("map container will receive next props");
   }
 
   setMapElementReference (mapElementReference) {
@@ -40,8 +45,15 @@ class MapContainer extends React.Component {
   }
 
   receiveLatLng(results) {
-    // console.log("geocode response results: ", results);
-    this.props.storeSearchResults(results[0]);
+    let data = results[0].geometry.location;
+    let position = {latitude: data.lat(), longitude: data.lng()}
+    console.log("position is: ", position);
+
+    DarkSkyApi.loadForecast(position)
+      .then(result => {
+        this.props.storeSearchResults(result.daily);
+        return result
+      })
   }
 
   handleChange(evt) {
@@ -57,8 +69,8 @@ class MapContainer extends React.Component {
   }
 
   render() {
-    let loc;
-    const initialLoc = {lat: 41.797255, lng: -87.582571};
+    // let loc;
+    // const initialLoc = {lat: 41.797255, lng: -87.582571};
 
     if (!this.props.google) {
       return <div>Loading...</div>
