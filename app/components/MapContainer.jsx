@@ -2,7 +2,6 @@ import React from 'react';
 import Map, {Marker} from 'google-maps-react';
 import Maps from './Map.jsx';
 import {GoogleMaps_API_KEY} from '../../API_KEYS.json';
-// import DarkSkyApi from '../DarkSky.jsx';
 
 class MapContainer extends React.Component {
   constructor(props){
@@ -19,7 +18,6 @@ class MapContainer extends React.Component {
   componentDidUpdate() {
     if (this.props.google){
       this.geocoder = new this.props.google.maps.Geocoder();
-      // console.log('this in updated lifecycle: ', this);
 
       // this.map = new this.props.google.maps.Map(this.mapElement, {
       //   zoom: 8,
@@ -45,16 +43,9 @@ class MapContainer extends React.Component {
 
   receiveLatLng(results) {
     let data = results[0].geometry.location;
-    let position = {latitude: data.lat(), longitude: data.lng()}
+    let position = {latitude: data.lat().toString(), longitude: data.lng().toString()}
     console.log("position is: ", position);
-
     this.props.storeWeatherData(position);
-
-    // DarkSkyApi.loadForecast(position)
-    //   .then(result => {
-    //     this.props.storeWeatherData(result.daily);
-    //     return result
-    //   })
   }
 
   handleChange(evt) {

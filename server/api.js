@@ -7,6 +7,7 @@ api
   .get('/heartbeat', (req, res) => res.send({ok: true}))
   .use('/auth', require('./routes/auth.js'))
   .use('/users', require('./routes/users.js'))
+  .use('/weather', require('./routes/darkSky.js'))
 
 // No routes matched? 404.
 api.use((req, res) => res.status(404).end())
