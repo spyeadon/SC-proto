@@ -8,6 +8,7 @@ import store from './store'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import NavbarContainer from './components/Navbar.jsx';
 
 import GeoContainer from './components/Geolocation.jsx';
 import GoogleApiWrapper from './components/MapAPIContainer.jsx'
@@ -22,11 +23,8 @@ const AppContainer = connect(
   ({ auth }) => ({ user: auth })
 )(
   ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI /> : <Login />}
-      </nav>
-      {/*children*/}
+    <div id="absolute-container">
+      <NavbarContainer />
       <div id="flex">
         <GeoContainer />
         <GoogleApiWrapper />
@@ -38,9 +36,9 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={AppContainer}>
-       {/*<IndexRedirect to="/map" />*/}
+       {/*<IndexRedirect to="/map" />
         <Route path="/geolocation" component={GeoContainer} onEnter={defaultWeatherInfo} />
-        <Route path="/map" component={GoogleApiWrapper} />
+        <Route path="/map" component={GoogleApiWrapper} />*/}
       </Route>
       <Route path="*" component={NotFound} />
     </Router>
