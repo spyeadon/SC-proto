@@ -1,7 +1,7 @@
 import {NEW_SEARCH} from '../action-creators/geocode.jsx';
 
 const initialState = {
-  geocodeData: {}
+  weatherData: {}
 };
 
 const geocode = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const geocode = (state = initialState, action) => {
 
   switch (action.type) {
     case NEW_SEARCH:
-      newState.geocodeData = action.geocodeData;
+      newState.weatherData = action.weatherData;
       return newState;
 
     default:

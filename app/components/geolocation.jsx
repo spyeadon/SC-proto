@@ -12,8 +12,9 @@ class Geolocation extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     console.log("geolocation will receive next props");
-    console.log("weather data: ", nextProps.geocodeData);
-    if (nextProps.geocodeData && !this.state.updated) {
+    console.log("weather data: ", nextProps.weatherData);
+    const data = Object.keys(nextProps.weatherData).length;
+    if (data && !this.state.updated) {
       this.setState({updated: true})
     }
   }
@@ -28,7 +29,7 @@ class Geolocation extends React.Component {
     }
     return (
       <Chart
-      weatherData={this.props.geocodeData}
+      weatherData={this.props.weatherData}
       />
     )
   }
@@ -36,7 +37,8 @@ class Geolocation extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    geocodeData: state.geocode.geocodeData
+    weatherData: state.geocode.weatherData,
+    auth: state.auth
   }
 }
 

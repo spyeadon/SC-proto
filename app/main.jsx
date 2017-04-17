@@ -12,11 +12,10 @@ import NavbarContainer from './components/Navbar.jsx';
 
 import GeoContainer from './components/Geolocation.jsx';
 import GoogleApiWrapper from './components/MapAPIContainer.jsx'
-import DarkSkyApi from './DarkSky.jsx';
 
 const defaultWeatherInfo = () => {
-  DarkSkyApi.loadCurrent()
-  .then(result => console.log(result))
+  // DarkSkyApi.loadCurrent()
+  // .then(result => console.log(result))
 }
 
 const AppContainer = connect(

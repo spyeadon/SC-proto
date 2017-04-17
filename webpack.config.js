@@ -36,6 +36,10 @@ module.exports = {
         }
       }]
     }]
+  }, node: {
+    net: 'empty',
+    tls: 'empty',
+    fs: 'empty'
   },
   plugins: devMode ? [
     new LiveReloadPlugin({
