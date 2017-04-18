@@ -3,7 +3,7 @@ import {GoogleApiWrapper} from 'google-maps-react';
 import {GoogleMaps_API_KEY} from '../../API_KEYS.json';
 import {connect} from 'react-redux';
 import MapContainer from './MapContainer.jsx';
-import {weatherAPIThunk, newSearch} from '../action-creators/geocode.jsx';
+import {weatherHistory, weatherForecast, weatherCurrently} from '../action-creators/geocode.jsx';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,8 +13,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    storeWeatherData (position) {
-      dispatch(weatherAPIThunk(position));
+    storeWeatherHistData (day, position) {
+      dispatch(weatherHistory(day, position));
+    },
+    storeForecastData (day, position) {
+      dispatch(weatherForecast(day, position));
+    },
+    storeWeatherCurrData (position) {
+      dispatch(weatherCurrently(position));
     }
   }
 }

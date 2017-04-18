@@ -17,6 +17,12 @@
   border: 10px solid red;
 }
 
+#chart-container {
+  width: 50%;
+  height: 100vh;
+  border: 10px solid green;
+}
+
 #flex {
   display: flex;
   flex-direction: row;

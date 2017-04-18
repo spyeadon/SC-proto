@@ -42,11 +42,31 @@ class MapContainer extends React.Component {
   }
 
   receiveLatLng(results) {
-    let data = results[0].geometry.location;
-    let position = {latitude: data.lat(), longitude: data.lng()}
+    const data = results[0].geometry.location;
+    const position = {latitude: data.lat(), longitude: data.lng()}
     console.log("position is: ", position);
-    /*Maybe dispatch 7 API calls, 1 for each day of the last 6 days, and another for the load forecast which includes today and the next week --> store in an array which pushes each successive prop on*/
-    this.props.storeWeatherData(position);
+
+    this.props.storeWeatherCurrData(position);
+
+    this.props.storeWeatherHistData(1, position);
+    this.props.storeWeatherHistData(2, position);
+    this.props.storeWeatherHistData(3, position);
+    this.props.storeWeatherHistData(4, position);
+    this.props.storeWeatherHistData(5, position);
+    this.props.storeWeatherHistData(6, position);
+
+    this.props.storeForecastData(1, position);
+    this.props.storeForecastData(2, position);
+    this.props.storeForecastData(3, position);
+    this.props.storeForecastData(4, position);
+    this.props.storeForecastData(5, position);
+    this.props.storeForecastData(6, position);
+
+    // this.props.storeWeatherCurrData(position);
+    // for(var i = 1; i <= 6; i++){
+    //   this.props.storeWeatherHistData(i, position);
+    //   this.props.storeForecastData(i, position);
+    // }
   }
 
   handleChange(evt) {

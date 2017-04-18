@@ -5,10 +5,10 @@ const LineChartD3 = require('react-d3-basic').LineChart;
 const Chart = (props) => {
 
   return (
-    <div key="data" id="geolocation-container">
-      <ChartD3>
+    <div key="data" id="chart-container">
+      {/*<ChartD3>
         <LineChartD3 />
-      </ChartD3>
+      </ChartD3>*/}
     </div>
   )
 }
