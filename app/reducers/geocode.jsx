@@ -1,9 +1,9 @@
-import {HISTORY, FORECAST, CURRENT} from '../action-creators/geocode.jsx';
+import {HISTORY, FORECAST, CURRENT, NEW_SEARCH} from '../action-creators/geocode.jsx';
 
 const initialState = {
   weatherData: [],
   forecastData: [],
-  currentData: {}
+  currentData: []
 };
 
 const geocode = (state = initialState, action) => {
@@ -25,8 +25,16 @@ const geocode = (state = initialState, action) => {
       return newState;
 
     case CURRENT:
-      newState.currentData = action.currentData;
+      newState.currentData.push(action.currentData);
+      newState.currentData = newState.currentData.slice();
       return newState;
+
+    case NEW_SEARCH:
+      return {
+        weatherData: [],
+        forecastData: [],
+        currentData: []
+      };
 
     default:
       return state;

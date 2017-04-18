@@ -46,6 +46,8 @@ class MapContainer extends React.Component {
     const position = {latitude: data.lat(), longitude: data.lng()}
     console.log("position is: ", position);
 
+    this.props.startFreshSearch();
+
     this.props.storeWeatherCurrData(position);
 
     this.props.storeWeatherHistData(1, position);

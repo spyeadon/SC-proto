@@ -4,6 +4,7 @@ import axios from 'axios';
 export const HISTORY = 'HISTORY';
 export const FORECAST = 'FORECAST';
 export const CURRENT = 'CURRENT';
+export const NEW_SEARCH = 'NEW_SEARCH';
 
 export const historySearch = weatherData => ({
     type: HISTORY,
@@ -19,6 +20,8 @@ export const currWeatherSearch = currentData => ({
     type: CURRENT,
     currentData: currentData
 })
+
+export const newSearch = () => ({type:  NEW_SEARCH})
 
 export const weatherHistory = (day, position) =>
     dispatch =>

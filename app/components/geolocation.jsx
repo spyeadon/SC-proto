@@ -34,6 +34,8 @@ class Geolocation extends React.Component {
     return (
       <Chart
       weatherData={this.props.weatherData}
+      currentData={this.props.currentData}
+      forecastData={this.props.forecastData}
       />
     )
   }
