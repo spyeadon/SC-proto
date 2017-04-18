@@ -43,8 +43,9 @@ class MapContainer extends React.Component {
 
   receiveLatLng(results) {
     let data = results[0].geometry.location;
-    let position = {latitude: data.lat().toString(), longitude: data.lng().toString()}
+    let position = {latitude: data.lat(), longitude: data.lng()}
     console.log("position is: ", position);
+    /*Maybe dispatch 7 API calls, 1 for each day of the last 6 days, and another for the load forecast which includes today and the next week --> store in an array which pushes each successive prop on*/
     this.props.storeWeatherData(position);
   }
 
