@@ -14,6 +14,7 @@ module.exports = require('express').Router()
 	.post('/history', (req, res, next) => {
     let time = moment().subtract(req.body.day, 'days');
     let momentTracker = time.format('MMMM Do YYYY, h:mm:ss a');
+    let chartKey = time.format('l');
     console.log("moment in weather history is: ", momentTracker);
       DarkSkyInstance
         .latitude(req.body.position.latitude)
@@ -22,6 +23,7 @@ module.exports = require('express').Router()
         .get()
         .then(data => {
           data.moment = momentTracker
+          data.chartKey = chartKey;
           res.json(data)
         })
         .catch(next)

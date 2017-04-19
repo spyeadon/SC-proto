@@ -17,6 +17,9 @@ export function formatData(dataArr) {
   let newArray =  dataArr.map(day => {
     newDay = Object.assign({}, day.currently);
     newDay.moment = day.moment;
+    let month = day.chartKey.split('/')[0];
+    let dayNum = day.chartKey.split('/')[1];
+    newDay.chartKey = +`${month}.${dayNum}`;
     newDay.timezone = day.timezone;
     newDay.dayOfTheMonth = +day.moment.split(' ')[1].slice(0, -2);
     return newDay;

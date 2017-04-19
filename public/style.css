@@ -23,6 +23,18 @@
   border: 10px solid green;
 }
 
+#chartClass-container {
+  width: 50%;
+  height: 100vh;
+  border: 10px solid blue;
+}
+
+#almost-there {
+  width: 50%;
+  height: 100vh;
+  border: 10px solid orange;
+}
+
 #flex {
   display: flex;
   flex-direction: row;

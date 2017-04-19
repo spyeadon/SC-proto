@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import Chart from './Charts.jsx';
+import Chart from './Chart.jsx';
 
 class Geolocation extends React.Component {
   constructor(props){
@@ -21,10 +21,6 @@ class Geolocation extends React.Component {
     if (current > 0 && history === 6 && future === 6 && !this.state.updated) {
       this.setState({updated: true})
     }
-  }
-
-  componentDidMount () {
-    console.log("geolocation did mount")
   }
 
   render (){

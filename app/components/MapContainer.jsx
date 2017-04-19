@@ -29,14 +29,6 @@ class MapContainer extends React.Component {
     }
   }
 
-  componentDidMount () {
-    console.log('map container did mount');
-  }
-
-  componentWillReceiveProps (nextProps) {
-    console.log("map container will receive next props");
-  }
-
   setMapElementReference (mapElementReference) {
     this.mapElement = mapElementReference;
   }
