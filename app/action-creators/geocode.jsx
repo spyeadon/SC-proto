@@ -21,7 +21,10 @@ export const currWeatherSearch = currentData => ({
     currentData: currentData
 })
 
-export const newSearch = () => ({type:  NEW_SEARCH})
+export const newSearch = (formattedAddress) => ({
+    type:  NEW_SEARCH,
+    formattedAddress: formattedAddress
+})
 
 export const weatherHistory = (day, position) =>
     dispatch =>

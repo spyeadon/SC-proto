@@ -32,6 +32,7 @@ class Geolocation extends React.Component {
       weatherData={this.props.weatherData}
       currentData={this.props.currentData}
       forecastData={this.props.forecastData}
+      formattedAddress={this.props.formattedAddress}
       />
     )
   }
@@ -42,6 +43,7 @@ const mapStateToProps = (state) => {
     weatherData: state.geocode.weatherData,
     forecastData: state.geocode.forecastData,
     currentData: state.geocode.currentData,
+    formattedAddress: state.geocode.formattedAddress,
     auth: state.auth
   }
 }

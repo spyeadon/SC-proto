@@ -22,8 +22,8 @@ const mapDispatchToProps = (dispatch) => {
     storeWeatherCurrData (position) {
       dispatch(weatherCurrently(position));
     },
-    startFreshSearch () {
-      dispatch(newSearch());
+    startFreshSearch (formattedAddress) {
+      dispatch(newSearch(formattedAddress));
     }
   }
 }

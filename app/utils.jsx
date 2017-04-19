@@ -26,3 +26,14 @@ export function formatData(dataArr) {
   })
   return newArray.sort(sortByTimestamp);
 }
+
+export function formatHourlyWeather(todaysWeather) {
+  let formattedWeather = Object.assign({}, todaysWeather.currently);
+  formattedWeather['9am'] = todaysWeather.hourly.data[9];
+  formattedWeather['noon'] = todaysWeather.hourly.data[12];
+  formattedWeather['3pm'] = todaysWeather.hourly.data[15];
+  formattedWeather['6pm'] = todaysWeather.hourly.data[18];
+  formattedWeather['9pm'] = todaysWeather.hourly.data[21];
+  formattedWeather.summary = todaysWeather.hourly.summary;
+  return formattedWeather;
+}

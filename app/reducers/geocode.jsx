@@ -3,7 +3,8 @@ import {HISTORY, FORECAST, CURRENT, NEW_SEARCH} from '../action-creators/geocode
 const initialState = {
   weatherData: [],
   forecastData: [],
-  currentData: []
+  currentData: [],
+  formattedAddress: ''
 };
 
 const geocode = (state = initialState, action) => {
@@ -33,7 +34,8 @@ const geocode = (state = initialState, action) => {
       return {
         weatherData: [],
         forecastData: [],
-        currentData: []
+        currentData: [],
+        formattedAddress: action.formattedAddress
       };
 
     default:

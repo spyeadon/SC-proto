@@ -37,8 +37,10 @@ class MapContainer extends React.Component {
     const data = results[0].geometry.location;
     const position = {latitude: data.lat(), longitude: data.lng()}
     console.log("position is: ", position);
+    const dataLocation = results[0].formatted_address;
+    console.log('geocode results are: ', dataLocation);
 
-    this.props.startFreshSearch();
+    this.props.startFreshSearch(dataLocation);
 
     this.props.storeWeatherCurrData(position);
 

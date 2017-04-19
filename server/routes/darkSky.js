@@ -30,6 +30,7 @@ module.exports = require('express').Router()
   })
   .post('/forecast', (req, res, next) => {
     let time = moment().add(req.body.day, 'days');
+    let chartKey = time.format('l');
     let momentTracker = time.format('MMMM Do YYYY, h:mm:ss a');
     console.log("moment in weather forecast is: ", momentTracker);
       DarkSkyInstance
@@ -39,6 +40,7 @@ module.exports = require('express').Router()
         .get()
         .then(data => {
           data.moment = momentTracker;
+          data.chartKey = chartKey;
           res.json(data)
         })
         .catch(next)
