@@ -65,15 +65,45 @@ class Chart extends React.Component {
       <div key="data" id="chartClass-container">
         <h1>{this.props.formattedAddress}</h1>
         <h3 className="subheaders">Today</h3>
-          <span>{this.todaysWeather.summary}</span>
-          <br />
-          <span>Current temperature: {this.todaysWeather.temperature}</span>
-          <br />
-          <span>Currently feels like: {this.todaysWeather.apparentTemperature}</span>
+          <span>{this.todaysWeather.summary}</span><br />
+          <span>Current temperature: {this.todaysWeather.temperature}{`\u2109`}</span><br />
+          <span>Currently feels like: {this.todaysWeather.apparentTemperature}{`\u2109`}</span><br />
+          {this.todaysWeather.precipType ? <span>Chance of {this.todaysWeather.precipType} is: {Math.round(this.todaysWeather.precipProbability * 100)}%</span> : <span>No precipiation at the moment!</span>}
           <div id="hourlyForecast">
-
+            {
+              this.todaysWeather.hourly.map(hour => {
+                return (
+                  <ul key={hour.time} className="weatherEachHour">
+                  <li>{hour.hour}</li>
+                  <li>{hour.summary}</li>
+                  <li>Temperature: {hour.temperature}</li>
+                  <li>Wind speed: {hour.windSpeed} mph</li>
+                  {hour.precipType ?
+                    <li>Chance of {hour.precipType} is: {Math.round(hour.precipProbability * 100)}%</li> : <span>No chance of precipiation</span>
+                  }
+                  </ul>
+                )
+              })
+            }
           </div>
         <h3 className="subheaders">Forecast</h3>
+          <div id="forecast">
+            {
+              this.forecast.map(day => {
+                return (
+                  <ul key={day.time} className="weatherEachDay">
+                  <li>{day.dayMonth}</li>
+                  <li>{day.summary}</li>
+                  <li>Temperature: {day.temperature}</li>
+                  <li>Wind speed: {day.windSpeed} mph</li>
+                  {day.precipType ?
+                    <li>Chance of {day.precipType} is: {Math.round(day.precipProbability * 100)}%</li> : <span>No chance of precipiation</span>
+                  }
+                  </ul>
+                )
+              })
+            }
+          </div>
         <h3 className="subheaders">Last week's weather:</h3>
         <LineChartD3
           title={this.state.title}

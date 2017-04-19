@@ -25,7 +25,7 @@
 
 #chartClass-container {
   width: 50%;
-  height: 100vh;
+  height: 100%;
   border: 10px solid blue;
 }
 
@@ -42,7 +42,27 @@
   justify-content: flex-start;
 }
 
+#forecast {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.weatherEachDay {
+
+}
+
 #hourlyForecast{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.subheaders {
+
+}
+
+.weatherEachHour{
 
 }
 

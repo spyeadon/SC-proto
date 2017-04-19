@@ -22,6 +22,7 @@ export function formatData(dataArr) {
     newDay.chartKey = +`${month}.${dayNum}`;
     newDay.timezone = day.timezone;
     newDay.dayOfTheMonth = +day.moment.split(' ')[1].slice(0, -2);
+    newDay.dayMonth = `${newDay.moment.split(' ')[0]} ${newDay.dayOfTheMonth}`
     return newDay;
   })
   return newArray.sort(sortByTimestamp);
@@ -29,11 +30,17 @@ export function formatData(dataArr) {
 
 export function formatHourlyWeather(todaysWeather) {
   let formattedWeather = Object.assign({}, todaysWeather.currently);
-  formattedWeather['9am'] = todaysWeather.hourly.data[9];
-  formattedWeather['noon'] = todaysWeather.hourly.data[12];
-  formattedWeather['3pm'] = todaysWeather.hourly.data[15];
-  formattedWeather['6pm'] = todaysWeather.hourly.data[18];
-  formattedWeather['9pm'] = todaysWeather.hourly.data[21];
+  formattedWeather.hourly = []
+  formattedWeather.hourly.push(todaysWeather.hourly.data[9]);
+  formattedWeather.hourly[formattedWeather.hourly.length - 1].hour = '9am';
+  formattedWeather.hourly.push(todaysWeather.hourly.data[12]);
+  formattedWeather.hourly[formattedWeather.hourly.length - 1].hour = 'Noon';
+  formattedWeather.hourly.push(todaysWeather.hourly.data[15]);
+  formattedWeather.hourly[formattedWeather.hourly.length - 1].hour = '3pm';
+  formattedWeather.hourly.push(todaysWeather.hourly.data[18]);
+  formattedWeather.hourly[formattedWeather.hourly.length - 1].hour = '6pm';
+  formattedWeather.hourly.push(todaysWeather.hourly.data[21]);
+  formattedWeather.hourly[formattedWeather.hourly.length - 1].hour = '9pm';
   formattedWeather.summary = todaysWeather.hourly.summary;
   return formattedWeather;
 }
