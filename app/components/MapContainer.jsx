@@ -1,5 +1,5 @@
 import React from 'react';
-import Map, {Marker} from 'google-maps-react';
+import {Marker} from 'google-maps-react';
 import Maps from './Map.jsx';
 import {GoogleMaps_API_KEY} from '../../API_KEYS.json';
 
@@ -7,38 +7,30 @@ class MapContainer extends React.Component {
   constructor(props){
     super();
     this.state = {
-      input: ''
+      input: '',
+      lat: 59.3293,
+      lng: 18.0686
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.receiveLatLng = this.receiveLatLng.bind(this);
-    this.setMapElementReference = this.setMapElementReference.bind(this);
   }
 
   componentDidUpdate() {
     if (this.props.google){
       this.geocoder = new this.props.google.maps.Geocoder();
-
-      // this.map = new this.props.google.maps.Map(this.mapElement, {
-      //   zoom: 8,
-      //   center: {
-      //     lat: 41.797255,
-      //     lng: -87.582571
-      //   }
-      // });
     }
-  }
-
-  setMapElementReference (mapElementReference) {
-    this.mapElement = mapElementReference;
   }
 
   receiveLatLng(results) {
     const data = results[0].geometry.location;
     const position = {latitude: data.lat(), longitude: data.lng()}
+    this.setState({
+      lat: data.lat(),
+      lng: data.lng()
+    })
     console.log("position is: ", position);
     const dataLocation = results[0].formatted_address;
-    console.log('geocode results are: ', dataLocation);
 
     this.props.startFreshSearch(dataLocation);
 
@@ -57,12 +49,6 @@ class MapContainer extends React.Component {
     this.props.storeForecastData(4, position);
     this.props.storeForecastData(5, position);
     this.props.storeForecastData(6, position);
-
-    // this.props.storeWeatherCurrData(position);
-    // for(var i = 1; i <= 6; i++){
-    //   this.props.storeWeatherHistData(i, position);
-    //   this.props.storeForecastData(i, position);
-    // }
   }
 
   handleChange(evt) {
@@ -78,8 +64,6 @@ class MapContainer extends React.Component {
   }
 
   render() {
-    // let loc;
-    // const initialLoc = {lat: 41.797255, lng: -87.582571};
 
     if (!this.props.google) {
       return <div>Loading...</div>
@@ -104,9 +88,10 @@ class MapContainer extends React.Component {
             ><i className="fa fa-search" aria-hidden="true" />
           </button>
         </form>
-        <div className="map" ref={this.setMapElementReference} >
-          <Map
+        <div id="map">
+          <Maps
             google={this.props.google}
+            position={{lat: this.state.lat, lng: this.state.lng}}
           />
         </div>
       </div>

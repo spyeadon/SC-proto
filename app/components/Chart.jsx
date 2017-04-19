@@ -8,7 +8,7 @@ class Chart extends React.Component {
   constructor(props){
     super();
     this.state = {
-      width: 600,
+      width: 550,
       height: 300,
       margins: {left: 50, right: 50, top: 30, bottom: 30},
       title: "Last Week's Forecast",
@@ -43,12 +43,12 @@ class Chart extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     this.chartData = formatData(nextProps.weatherData);
-    console.log('formatted array of data is: ', this.chartData);
-    console.log("location of weather search is: ", this.props.formattedAddress);
+    // console.log('formatted array of data is: ', this.chartData);
+    // console.log("location of weather search is: ", this.props.formattedAddress);
     this.forecast = formatData(nextProps.forecastData);
-    console.log("formatted array of forecast is: ", this.forecast);
+    // console.log("formatted array of forecast is: ", this.forecast);
     if (nextProps.currentData[0]) this.todaysWeather = formatHourlyWeather(nextProps.currentData[0]);
-    console.log("formatted object of todays weather is: ", this.todaysWeather);
+    // console.log("formatted object of todays weather is: ", this.todaysWeather);
   }
 
   xAccessor (day) {
@@ -65,10 +65,12 @@ class Chart extends React.Component {
       <div key="data" id="chartClass-container">
         <h1>{this.props.formattedAddress}</h1>
         <h3 className="subheaders">Today</h3>
-          <span>{this.todaysWeather.summary}</span><br />
-          <span>Current temperature: {this.todaysWeather.temperature}{`\u2109`}</span><br />
-          <span>Currently feels like: {this.todaysWeather.apparentTemperature}{`\u2109`}</span><br />
-          {this.todaysWeather.precipType ? <span>Chance of {this.todaysWeather.precipType} is: {Math.round(this.todaysWeather.precipProbability * 100)}%</span> : <span>No precipiation at the moment!</span>}
+          <ul>
+            <li>{this.todaysWeather.summary}</li>
+            <li>Current temperature: {this.todaysWeather.temperature}{`\u2109`}</li>
+            <li>Currently feels like: {this.todaysWeather.apparentTemperature}{`\u2109`}</li>
+            {this.todaysWeather.precipType ? <li>Chance of {this.todaysWeather.precipType} is: {Math.round(this.todaysWeather.precipProbability * 100)}%</li> : <li>No precipiation at the moment!</li>}
+          </ul>
           <div id="hourlyForecast">
             {
               this.todaysWeather.hourly.map(hour => {

@@ -11,10 +11,6 @@ class Geolocation extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log("geolocation will receive next props");
-    console.log("weather history data: ", nextProps.weatherData);
-    console.log("weather forecast data: ", nextProps.forecastData);
-    console.log("weather current data: ", nextProps.currentData);
     const history = nextProps.weatherData.length;
     const future = nextProps.weatherData.length;
     const current = Object.keys(nextProps.currentData).length

@@ -20,8 +20,8 @@ const AppContainer = connect(
     <div id="absolute-container">
       <NavbarContainer />
       <div id="flex">
-        <GeoContainer />
         <GoogleApiWrapper />
+        <GeoContainer />
       </div>
     </div>
 )
