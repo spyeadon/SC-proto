@@ -6,7 +6,10 @@
 
 const User = require('./user')
 const OAuth = require('./oauth')
+const History = require('./history.js')
 
+History.belongsTo(User)
 OAuth.belongsTo(User)
 User.hasOne(OAuth)
-module.exports = {User}
+
+module.exports = {User, History}
