@@ -5,9 +5,10 @@ export const Login = ({ login }) => (
     className="form-inline"
     id="login-form"
     onSubmit={evt => {
-    evt.preventDefault()
+    evt.preventDefault();
     login(evt.target.username.value, evt.target.password.value)
   } }>
+    <span className="whoami">Login</span>
     <input className="form-control input-lg" name="username" type="username" />
     <input className="form-control input-lg" name="password" type="password" />
     <button
@@ -20,6 +21,7 @@ export const Login = ({ login }) => (
 
 import {login} from 'APP/app/reducers/auth'
 import {connect} from 'react-redux'
+import {toggleHistory} from 'APP/app/action-creators/history'
 
 export default connect(
   null,

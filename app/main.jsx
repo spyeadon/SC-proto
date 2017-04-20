@@ -16,21 +16,21 @@ import HistoryContainer from './components/History.jsx';
 
 import {getSearchHistory} from './action-creators/history.jsx';
 
-// const searchHistoryOnEnter = () => {
-//   const user = store.getState().auth;
-//   store.dispatch(getSearchHistory(user.id))
-// }
-
 const AppContainer = connect(
-  ({ auth }) => ({ user: auth })
+  ({ auth, history }) => ({ user: auth, displayHistory: history.displayHistory })
 )(
-  ({ user, children }) =>
+  ({ user, children, displayHistory }) =>
     <div id="absolute-container">
       <NavbarContainer />
-      <div id="flex">
-        <GoogleApiWrapper />
-        <GeoContainer />
-      </div>
+      {!displayHistory ?
+        <div id="flex">
+          <GoogleApiWrapper />
+          <GeoContainer />
+        </div> :
+        <div id="flex">
+          <HistoryContainer />
+        </div>
+    }
     </div>
 )
 
@@ -40,7 +40,7 @@ render(
       <Route path="/" component={AppContainer}>
         <Route path="/geolocation" component={GeoContainer} />
         <Route path="/map" component={GoogleApiWrapper} />
-        {/*<Route path="/searchHistory" component={HistoryContainer} onEnter={searchHistoryOnEnter} />*/}
+        <Route path="/searchHistory" component={HistoryContainer} />
       </Route>
       <Route path="*" component={NotFound} />
     </Router>

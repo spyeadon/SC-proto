@@ -123,3 +123,15 @@ html {
 #search-history{
 
 }
+
+.navbar{
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar * {
+  margin: .5em;
+}
+
+#search-btn {
+}

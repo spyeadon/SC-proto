@@ -8,7 +8,7 @@ const Navbar = (props) => {
     <nav className="navbar">
       <div className="logo-container">
       </div>
-      {props.user ? <WhoAmI /> : <Login />}
+      {props.user ? <div style={{display: 'flex'}}><WhoAmI /></div> : <div style={{display: 'flex'}}><Login /></div>}
     </nav>
   )
 }

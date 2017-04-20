@@ -13,7 +13,10 @@ export const addToSearchHistory = () => ({
 export const getSearchHistory = (userID) =>
   dispatch =>
     axios.get(`/api/users/history/${userID}`)
-    .then(res => dispatch(retrieveUserSearch(res.data)))
+    .then(res => {
+      console.log("search history is: ", res.data)
+      dispatch(retrieveUserSearch(res.data))
+    })
     .catch(err => console.error(err))
 
 export const postToSearchHistory = (searchAddress, userID) =>
@@ -21,3 +24,9 @@ export const postToSearchHistory = (searchAddress, userID) =>
     axios.post(`/api/users/history/${userID}`, {searchAddress: searchAddress})
     .then(dispatch(addToSearchHistory()))
     .catch(err => console.error(err))
+
+export const SHOW_HISTORY = 'SHOW_HISTORY';
+export const toggleHistory = (bool) => ({
+  type: SHOW_HISTORY,
+  displayHistory: bool
+})

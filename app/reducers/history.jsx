@@ -1,7 +1,8 @@
-import {USER_SEARCH} from '../action-creators/history.jsx';
+import {USER_SEARCH, SHOW_HISTORY} from '../action-creators/history.jsx';
 
 const initialState = {
-  searchHistory: []
+  searchHistory: [],
+  displayHistory: false
 }
 
 const history = (state = initialState, action) => {
@@ -10,6 +11,10 @@ const history = (state = initialState, action) => {
   switch (action.type){
     case USER_SEARCH:
       newState.searchHistory = action.searchHistory;
+      return newState;
+
+    case SHOW_HISTORY:
+      newState.displayHistory = action.displayHistory;
       return newState;
 
     default:
