@@ -71,7 +71,7 @@ class MapContainer extends React.Component {
     return (
       <div id="map-container">
         <form
-          id="search"
+          id="search-form"
           className="form-inline"
           onSubmit={this.handleSubmit}
           >

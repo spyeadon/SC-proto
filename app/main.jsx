@@ -11,7 +11,15 @@ import NotFound from './components/NotFound'
 import NavbarContainer from './components/Navbar.jsx';
 
 import GeoContainer from './components/Geolocation.jsx';
-import GoogleApiWrapper from './components/MapAPIContainer.jsx'
+import GoogleApiWrapper from './components/MapAPIContainer.jsx';
+import HistoryContainer from './components/History.jsx';
+
+import {getSearchHistory} from './action-creators/history.jsx';
+
+// const searchHistoryOnEnter = () => {
+//   const user = store.getState().auth;
+//   store.dispatch(getSearchHistory(user.id))
+// }
 
 const AppContainer = connect(
   ({ auth }) => ({ user: auth })
@@ -30,9 +38,9 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={AppContainer}>
-       {/*<IndexRedirect to="/map" />
-        <Route path="/geolocation" component={GeoContainer} onEnter={defaultWeatherInfo} />
-        <Route path="/map" component={GoogleApiWrapper} />*/}
+        <Route path="/geolocation" component={GeoContainer} />
+        <Route path="/map" component={GoogleApiWrapper} />
+        {/*<Route path="/searchHistory" component={HistoryContainer} onEnter={searchHistoryOnEnter} />*/}
       </Route>
       <Route path="*" component={NotFound} />
     </Router>

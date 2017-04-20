@@ -13,24 +13,6 @@ export const authenticated = user => ({
   type: AUTHENTICATED, user
 })
 
-const USER_SEARCH = 'USER_SEARCH';
-export const retrieveUserSearch = searchAddress => ({
-  type: USER_SEARCH,
-  searchAddress: searchAddress
-})
-
-export const getSearchHistory = (userID) =>
-  dispatch =>
-    axios.get()
-    .then()
-    .catch(err => console.error(err))
-
-export const postToSearchHistory = () =>
-  dispatch =>
-    axios.post()
-    .then()
-    .catch(err => console.error(err))
-
 export const login = (username, password) =>
   dispatch =>
     axios.post('/api/auth/login/local',
