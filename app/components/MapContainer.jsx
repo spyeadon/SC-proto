@@ -78,6 +78,7 @@ class MapContainer extends React.Component {
           onSubmit={this.handleSubmit}
           >
           <input
+            id="search-input"
             className="form-control input-lg"
             onChange={this.handleChange}
             placeholder="Search weather here"

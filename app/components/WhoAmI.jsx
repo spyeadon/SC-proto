@@ -3,14 +3,35 @@ import {Link} from 'react-router'
 
 export const WhoAmI = ({ user, logout, toggleHistory, displayHistory, getSearchHistory }) => (
   <div className="whoami">
-    <span className="whoami-user-name"><strong>{user && user.name}</strong></span>
-    {!displayHistory ? <button className="btn btn-default btn-lg" onClick={logout}>
-      <i className="fa fa-sign-out" aria-hidden="true" />
-    </button> : null}
+    <span className="whoami-user-name">
+      <strong>{user && user.name}</strong>
+    </span>
     {!displayHistory ?
-      <button id="search-btn" className="btn btn-default btn-lg" onClick={() => {getSearchHistory(user.id); toggleHistory(true)}}>Search History</button> :
-      <button id="search-btn" className="btn btn-default btn-lg" onClick={() => toggleHistory(false)}>Home</button>
-  }
+      <button
+        className="btn btn-default btn-lg"
+        onClick={logout}>
+      Logout
+      </button>
+      : null
+    }
+    {!displayHistory ?
+      <button
+        id="search-btn"
+        className="btn btn-default btn-lg"
+        onClick={() => {
+          getSearchHistory(user.id);
+          toggleHistory(true)}
+        }>
+        Search History
+      </button>
+      : <button
+          id="search-btn"
+          className="btn btn-default btn-lg"
+          onClick={() => toggleHistory(false)
+          }>
+          Home
+        </button>
+    }
   </div>
 )
 

@@ -1,5 +1,7 @@
 function sortByTimestamp(a, b) {
-  //will require refactoring in case weather spans multiple months and moments includes day numbers like 29, 30... and 1, 2, 3 and months like April.. and June
+  //will require refactoring in case weather spans multiple months and
+  //moments includes day numbers like 29, 30... and 1, 2, 3 and
+  //months like April.. and June
   var nameA = a.moment.toUpperCase();
   var nameB = b.moment.toUpperCase();
   if (nameA < nameB) {
@@ -8,7 +10,6 @@ function sortByTimestamp(a, b) {
   if (nameA > nameB) {
     return 1;
   }
-  // values must be equal
   return 0;
 }
 

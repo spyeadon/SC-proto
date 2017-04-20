@@ -8,12 +8,12 @@ export const History = (props) => {
     <div id="search-history">
     <h2>Username: {props.user.name}</h2>
     <h4>Email: {props.user.email}</h4>
-    <span>Search History: </span>
-      <ul>
+    <h5>Search History:</h5>
+      <ul id="search-list">
       {
         props.searchHistory.map(search => {
           return (
-            <li key={search.created_at}>{search.address}</li>
+            <li key={search.id}>{search.address}</li>
           )
         })
       }

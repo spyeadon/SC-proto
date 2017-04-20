@@ -14,7 +14,6 @@ export const getSearchHistory = (userID) =>
   dispatch =>
     axios.get(`/api/users/history/${userID}`)
     .then(res => {
-      console.log("search history is: ", res.data)
       dispatch(retrieveUserSearch(res.data))
     })
     .catch(err => console.error(err))

@@ -6,9 +6,16 @@ import WhoAmI from './WhoAmI'
 const Navbar = (props) => {
   return (
     <nav className="navbar">
-      <div className="logo-container">
+      <div id="logo-container">
+        SkyCast, Inc.
       </div>
-      {props.user ? <div style={{display: 'flex'}}><WhoAmI /></div> : <div style={{display: 'flex'}}><Login /></div>}
+      {props.user ?
+        <div className="logged-in">
+          <WhoAmI />
+        </div> :
+        <div className="logged-in">
+          <Login />
+        </div>}
     </nav>
   )
 }

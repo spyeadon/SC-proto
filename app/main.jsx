@@ -1,12 +1,10 @@
 'use strict'
 import React from 'react'
-import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
+import {Router, Route, browserHistory} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
 
 import store from './store'
-import Login from './components/Login'
-import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import NavbarContainer from './components/Navbar.jsx';
 
@@ -14,12 +12,10 @@ import GeoContainer from './components/Geolocation.jsx';
 import GoogleApiWrapper from './components/MapAPIContainer.jsx';
 import HistoryContainer from './components/History.jsx';
 
-import {getSearchHistory} from './action-creators/history.jsx';
-
 const AppContainer = connect(
-  ({ auth, history }) => ({ user: auth, displayHistory: history.displayHistory })
+  ({ history }) => ({ displayHistory: history.displayHistory })
 )(
-  ({ user, children, displayHistory }) =>
+  ({ displayHistory }) =>
     <div id="absolute-container">
       <NavbarContainer />
       {!displayHistory ?

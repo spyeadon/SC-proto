@@ -21,7 +21,11 @@ class Geolocation extends React.Component {
 
   render (){
     if (!this.state.updated) {
-      return <div id="geolocation-container">Loading...</div>
+      return (
+        <div className="geolocation-container">
+          <div className="loading-modal">Search a location to view weather data</div>
+        </div>
+      )
     }
     return (
       <Chart

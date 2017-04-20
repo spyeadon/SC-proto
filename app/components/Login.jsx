@@ -8,14 +8,21 @@ export const Login = ({ login }) => (
     evt.preventDefault();
     login(evt.target.username.value, evt.target.password.value)
   } }>
-    <span className="whoami">Login</span>
-    <input className="form-control input-lg" name="username" type="username" />
-    <input className="form-control input-lg" name="password" type="password" />
+    <input
+      className="form-control input-lg"
+      name="username"
+      type="text"
+    />
+    <input
+      className="form-control input-lg"
+      name="password"
+      type="password"
+    />
     <button
       type="submit"
-      className="btn btn-default btn-lg"
-      ><i className="fa fa-sign-in" aria-hidden="true" />
-      </button>
+      className="btn btn-default btn-sm"
+      >Login
+    </button>
   </form>
 )
 
