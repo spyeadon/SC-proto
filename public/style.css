@@ -46,13 +46,13 @@
 #geolocation-container {
   width: 50%;
   height: 100%;
-  border: 10px solid red;
+  /*border: 10px solid red;*/
 }
 
 #chart-container {
   width: 50%;
   height: 100%;
-  border: 10px solid green;
+  /*border: 10px solid green;*/
 }
 
 #chartClass-container {
@@ -66,7 +66,7 @@
 #almost-there {
   width: 50%;
   height: 100vh;
-  border: 10px solid orange;
+  /*border: 10px solid orange;*/
 }
 
 #flex {

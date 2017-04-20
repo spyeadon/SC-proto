@@ -6,8 +6,17 @@ import {toggleHistory} from 'APP/app/action-creators/history'
 export const History = (props) => {
   return (
     <div id="search-history">
+    <h2>Username: {props.user.name}</h2>
+    <h4>Email: {props.user.email}</h4>
+    <span>Search History: </span>
       <ul>
-        <li>made it to search history!!</li>
+      {
+        props.searchHistory.map(search => {
+          return (
+            <li key={search.created_at}>{search.address}</li>
+          )
+        })
+      }
       </ul>
     </div>
   )
@@ -19,11 +28,6 @@ function mapStateToProps(state) {
     user: state.auth
   }
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//   }
-// }
 
 const HistoryContainer = connect(
   mapStateToProps, null)(History);

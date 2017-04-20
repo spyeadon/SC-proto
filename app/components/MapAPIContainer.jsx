@@ -4,6 +4,7 @@ import {GoogleMaps_API_KEY} from '../../API_KEYS.json';
 import {connect} from 'react-redux';
 import MapContainer from './MapContainer.jsx';
 import {weatherHistory, weatherForecast, weatherCurrently, newSearch} from '../action-creators/geocode.jsx';
+import {postToSearchHistory} from '../action-creators/history.jsx';
 
 const mapStateToProps = (state) => {
   return {
@@ -24,6 +25,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     startFreshSearch (formattedAddress) {
       dispatch(newSearch(formattedAddress));
+    },
+    addSearchToDB (searchAddress, userID) {
+      dispatch(postToSearchHistory(searchAddress, userID));
     }
   }
 }

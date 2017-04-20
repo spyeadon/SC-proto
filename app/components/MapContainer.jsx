@@ -34,6 +34,8 @@ class MapContainer extends React.Component {
 
     this.props.startFreshSearch(dataLocation);
 
+    if (this.props.auth) this.props.addSearchToDB(dataLocation, this.props.auth.id);
+
     this.props.storeWeatherCurrData(position);
 
     this.props.storeWeatherHistData(1, position);
