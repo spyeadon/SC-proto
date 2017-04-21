@@ -29,7 +29,7 @@ class MapContainer extends React.Component {
       lat: data.lat(),
       lng: data.lng()
     })
-    console.log("position is: ", position);
+    console.log("coordinates from user search are: ", position);
     const dataLocation = results[0].formatted_address;
 
     this.props.startFreshSearch(dataLocation);

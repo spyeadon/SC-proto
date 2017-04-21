@@ -1,7 +1,5 @@
 import React from 'react';
-const ChartD3 = require('react-d3-core').Chart;
 const LineChartD3 = require('react-d3-basic').LineChart;
-const d3 = require('d3');
 import {formatData, formatHourlyWeather} from '../utils.jsx';
 
 class Chart extends React.Component {
@@ -26,7 +24,7 @@ class Chart extends React.Component {
         }
       }, {
         field: 'apparentTemperature',
-        name: `Feels Like (\u2109)`,
+        name: `Felt like (\u2109)`,
         color: '#2C75FF',
         style: {
           strokeWidth: 5,

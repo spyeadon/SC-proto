@@ -5,6 +5,7 @@ class Maps extends React.Component {
   constructor(props){
     super();
     this.setMapElementReference = this.setMapElementReference.bind(this);
+    this.loadMap = this.loadMap.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -29,19 +30,28 @@ class Maps extends React.Component {
 
     let zoom = 14;
     let {lat, lng} = this.props.position;
-    if (nextPos.lat) {let {lat, lng} = nextPos;}
+    if (nextPos.lat) {
+      let {lat, lng} = nextPos;
+    }
     const center = new maps.LatLng(lat, lng);
     const mapConfig = Object.assign({}, {
       center: center,
       zoom: zoom
     })
     this.map = new maps.Map(component.mapElement, mapConfig);
+    this.marker = new maps.Marker({
+      map: this.map,
+      position: {
+        lat: lat,
+        lng: lng
+      }
+    });
   }
 
   render (){
     return (
       <div id="map-ref" ref={this.setMapElementReference}>
-      Loading MAPPPP...
+      Loading Map...
       </div>
     )
   }
